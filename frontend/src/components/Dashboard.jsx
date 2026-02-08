@@ -56,7 +56,7 @@ export default function Dashboard({ data, coin, onBack }) {
 
         {/* AGENT CARD 1: CHAIN */}
         <AgentCard 
-          title="Chain Forensic" 
+          title="Chain Score" 
           icon={<Lock />} 
           score={data.breakdown.chain_agent.score} 
           reason={data.breakdown.chain_agent.reason} 
@@ -64,7 +64,7 @@ export default function Dashboard({ data, coin, onBack }) {
 
         {/* AGENT CARD 2: GOV */}
         <AgentCard 
-          title="Gov Audit" 
+          title="Govarnance Score" 
           icon={<Vote />} 
           score={data.breakdown.gov_agent.score} 
           reason={data.breakdown.gov_agent.reason} 
@@ -72,7 +72,7 @@ export default function Dashboard({ data, coin, onBack }) {
 
         {/* AGENT CARD 3: SOCIAL */}
         <AgentCard 
-          title="Social Intel" 
+          title="Social Score" 
           icon={<Users />} 
           score={data.breakdown.social_agent.score} 
           reason={data.breakdown.social_agent.reason} 
