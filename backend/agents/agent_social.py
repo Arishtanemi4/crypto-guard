@@ -1,25 +1,39 @@
 import json
+import os
 import ollama
 
-def scan(scenario_type="danger_scenario"):
-    """
-    Scans social media data for Coordinated Inauthentic Behavior (CIB).
-    """
-    
-    # 1. Load the data
-    try:
-        with open("data/social_feed.json", 'r') as f:
-            full_data = json.load(f)
-    except FileNotFoundError:
-        return {"risk_score": 0, "risk_level": "ERROR", "reason": "data/social_feed.json file not found."}
-    
-    # 2. Select the specific scenario (Safe vs Danger)
-    if scenario_type not in full_data:
-        return {"risk_score": 0, "risk_level": "ERROR", "reason": f"Scenario '{scenario_type}' not found."}
-        
-    target_data = full_data[scenario_type]
+# --- CONFIGURATION ---
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "social_feed.json")
 
-    # 3. The Professional System Prompt
+# --- CORE LOGIC ---
+def scan_social(coin_name: str):
+    """
+    Scans social media data for a specific coin to detect Bot Swarms/CIB.
+    """
+    # 1. Load Data
+    if not os.path.exists(DATA_PATH):
+        return {"risk_score": 0, "risk_level": "ERROR", "reason": "Database file not found."}
+
+    try:
+        with open(DATA_PATH, 'r') as f:
+            full_data = json.load(f)
+    except Exception as e:
+        return {"risk_score": 0, "risk_level": "ERROR", "reason": f"Corrupt DB: {str(e)}"}
+    
+    # 2. Lookup Project
+    target_project = coin_name.lower()
+    
+    if target_project not in full_data:
+        return {
+            "risk_score": 0, 
+            "risk_level": "UNKNOWN", 
+            "reason": f"Project '{coin_name}' not found in social feed."
+        }
+        
+    target_data = full_data[target_project]
+
+    # 3. System Prompt
     system_prompt = """
     You are a Senior Threat Intelligence Analyst specializing in Social Engineering Detection.
     Your objective is to identify "Bot Swarms" and "Astroturfing" campaigns in crypto projects.
@@ -36,32 +50,17 @@ def scan(scenario_type="danger_scenario"):
     - "reason": (String, a concise technical explanation of the findings)
     """
 
-    # 4. Call Llama 3
+    # 4. AI Analysis
     try:
         response = ollama.chat(
             model="llama3",
             messages=[
                 {'role': 'system', 'content': system_prompt},
-                {'role': 'user', 'content': f"Analyze this dataset: {json.dumps(target_data)}"}
+                {'role': 'user', 'content': f"Analyze this dataset for {coin_name.upper()}: {json.dumps(target_data)}"}
             ],
-            format='json' # Forces strictly valid JSON response
+            format='json'
         )
         return json.loads(response['message']['content'])
         
     except Exception as e:
         return {"risk_score": 0, "risk_level": "ERROR", "reason": str(e)}
-
-# --- TESTING BLOCK (This lets you run this file directly) ---
-if __name__ == "__main__":
-    print("🤖 SOCIAL AGENT DIAGNOSTIC TEST")
-    print("-------------------------------")
-    
-    # Test 1: Run the Danger Scenario
-    print("\n[TEST 1] Scanning 'danger_scenario' (Expect CRITICAL)...")
-    result_danger = scan("danger_scenario")
-    print(json.dumps(result_danger, indent=2))
-    
-    # Test 2: Run the Safe Scenario
-    print("\n[TEST 2] Scanning 'safe_scenario' (Expect LOW)...")
-    result_safe = scan("safe_scenario")
-    print(json.dumps(result_safe, indent=2))
