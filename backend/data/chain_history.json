@@ -1,0 +1,14 @@
+{
+  "safe_scenario": {
+    "contract_address": "0xGoodContract_777",
+    "funding_history": [
+      {"from": "0xCoinbaseExchange", "to": "0xNiceDev_Beta", "amount": "5.0", "token": "ETH"}
+    ]
+  },
+  "danger_scenario": {
+    "contract_address": "0xBadContract_888",
+    "funding_history": [
+      {"from": "0xTornadoCashRouter", "to": "0xDevWallet_Alpha", "amount": "100.0", "token": "ETH"}
+    ]
+  }
+}
