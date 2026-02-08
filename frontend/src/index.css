@@ -68,6 +68,46 @@ body {
 }
 .coin-card:hover .scan-btn { background: var(--accent-green); color: black; border-color: var(--accent-green); }
 
+/* Add to src/index.css */
+
+.coin-source {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+  margin: 15px 0;
+  text-align: left;
+  font-size: 0.8rem;
+  border: 1px solid #333;
+}
+
+.source-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.source-value {
+  color: #00ff9d; /* Matrix Green */
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.source-badge {
+  background: #333;
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  margin-left: 8px;
+}
+
+
 /* Results View */
 .back-btn { background: transparent; border: none; color: #666; display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 20px; }
 .back-btn:hover { color: white; }
