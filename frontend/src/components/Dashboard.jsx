@@ -54,19 +54,6 @@ export default function Dashboard({ data, coin, onBack }) {
           </p>
         </div>
 
-        {/* RADAR CHART */}
-        <div className="card" style={{ height: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h3 style={{ marginBottom: 0 }}>RISK TOPOLOGY</h3>
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart cx="50%" cy="50%" outerRadius="60%" data={chartData}>
-              <PolarGrid stroke="#333" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: '#888', fontSize: 12 }} />
-              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-              <Radar name="Risk" dataKey="A" stroke="#ff0055" strokeWidth={3} fill="#ff0055" fillOpacity={0.3} />
-            </RadarChart>
-          </ResponsiveContainer>
-        </div>
-
         {/* AGENT CARD 1: CHAIN */}
         <AgentCard 
           title="Chain Forensic" 
@@ -90,6 +77,19 @@ export default function Dashboard({ data, coin, onBack }) {
           score={data.breakdown.social_agent.score} 
           reason={data.breakdown.social_agent.reason} 
         />
+
+        {/* RADAR CHART */}
+        <div className="card" style={{ height: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h3 style={{ marginBottom: 0 }}>RISK TOPOLOGY</h3>
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart cx="50%" cy="50%" outerRadius="60%" data={chartData}>
+              <PolarGrid stroke="#333" />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: '#888', fontSize: 12 }} />
+              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+              <Radar name="Risk" dataKey="A" stroke="#ff0055" strokeWidth={3} fill="#ff0055" fillOpacity={0.3} />
+            </RadarChart>
+          </ResponsiveContainer>
+        </div>
 
       </div>
     </div>
