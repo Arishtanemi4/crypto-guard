@@ -2,6 +2,10 @@
 
 ## A Multi Agent framework to track real vs fake hype of Cryptocurrencies
 
+### Prerequisites
+
+A GPU device to run LLM locally
+
 ### Backend
 
 go to the backend folder using
