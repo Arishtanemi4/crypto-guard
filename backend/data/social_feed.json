@@ -1,17 +1,18 @@
 {
-  "solana": {
-    "platform": "Twitter",
+  "safe_scenario": {
+    "project_name": "GoodDefi Protocol",
     "tweets": [
-      {"user": "@organic_user_1", "text": "Solana looking strong today!", "timestamp": "10:00:01"},
-      {"user": "@defi_fan_99", "text": "Just bridged some assets to SOL.", "timestamp": "10:05:30"}
+      {"user": "@DeFi_Chad", "text": "Just read the whitepaper. The tokenomics look sustainable.", "timestamp": "2025-10-24T12:05:00Z", "account_age_days": 450},
+      {"user": "@Sarah_Builds", "text": "Excited for the launch! The team is fully doxxed.", "timestamp": "2025-10-24T14:20:15Z", "account_age_days": 890},
+      {"user": "@Crypto_Analyst", "text": "Liquidity is locked for 2 years. Good sign.", "timestamp": "2025-10-24T16:00:00Z", "account_age_days": 1200}
     ]
   },
-  "pepe": {
-    "platform": "Twitter",
+  "danger_scenario": {
+    "project_name": "SleepMint Token",
     "tweets": [
-      {"user": "@bot_77382", "text": "BUY PEPE NOW!!! MOON SOON!!!", "timestamp": "12:00:00"},
-      {"user": "@bot_99281", "text": "BUY PEPE NOW!!! MOON SOON!!!", "timestamp": "12:00:00"},
-      {"user": "@bot_11234", "text": "BUY PEPE NOW!!! MOON SOON!!!", "timestamp": "12:00:00"}
+      {"user": "@CryptoBot_01", "text": "This is the next 1000x gem! LFG 🚀", "timestamp": "2025-10-24T10:00:01Z", "account_age_days": 1},
+      {"user": "@CryptoBot_02", "text": "This is the next 1000x gem! LFG 🚀", "timestamp": "2025-10-24T10:00:01Z", "account_age_days": 1},
+      {"user": "@CryptoBot_03", "text": "This is the next 1000x gem! LFG 🚀", "timestamp": "2025-10-24T10:00:02Z", "account_age_days": 0}
     ]
   }
 }

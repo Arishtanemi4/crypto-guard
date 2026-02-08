@@ -1,70 +1,52 @@
 import json
-import os
 import ollama
 
-# --- CONFIGURATION ---
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(BASE_DIR, "data", "governance_proposals.json")
-
-# --- CORE LOGIC ---
-def audit_governance(coin_name: str):
+def audit(scenario_type="danger_scenario"):
     """
-    Audits a specific DAO's proposal by looking up the coin name.
+    Audits DAO Governance proposals for "Flash Loan" attacks and Malicious Payloads.
     """
-    # 1. Load Data
-    if not os.path.exists(DATA_PATH):
-        return {"risk_score": 0, "risk_level": "ERROR", "reason": "Database file not found."}
-
+    
+    # 1. Load the data
     try:
-        with open(DATA_PATH, 'r') as f:
+        with open("data/governance_proposals.json", 'r') as f:
             full_data = json.load(f)
-    except Exception as e:
-        return {"risk_score": 0, "risk_level": "ERROR", "reason": f"Corrupt DB: {str(e)}"}
+    except FileNotFoundError:
+        return {"risk_score": 0, "risk_level": "ERROR", "reason": "data/governance_proposals.json file not found."}
     
-    # 2. Lookup Project
-    target_project = coin_name.lower()
-    
-    if target_project not in full_data:
-        return {
-            "risk_score": 0, 
-            "risk_level": "UNKNOWN", 
-            "reason": f"Project '{coin_name}' not found in governance records."
-        }
+    # 2. Select the scenario
+    if scenario_type not in full_data:
+        return {"risk_score": 0, "risk_level": "ERROR", "reason": f"Scenario '{scenario_type}' not found."}
         
-    target_data = full_data[target_project]
+    target_data = full_data[scenario_type]
 
-    # 3. System Prompt
+    # 3. The Governance Auditor System Prompt
     system_prompt = """
     You are a Senior DAO Governance Auditor.
     Your task is to analyze a governance proposal to detect "Governance Coups" or "Flash Loan Attacks".
     
     RISK MATRIX (Follow strictly):
-    - CRITICAL (Score 80-100): 
+    - CRITICAL RISK: 
         * Funding source is "Flash Loan". 
         * Execution Delay is "0 seconds" or "Instant".
         * Voting Period is extremely short (< 1 hour).
-    - MEDIUM (Score 40-79):
-        * Fresh wallet proposer, or short execution delay (< 12 hours).
-    - LOW (Score 0-39): 
+    - LOW RISK: 
         * Execution Delay is > 24 hours (Timelock).
         * Proposer has long-term history.
     
     OUTPUT FORMAT:
-    Return a strictly valid JSON object:
-    {
-        "risk_score": (int),
-        "risk_level": (str),
-        "reason": (str)
-    }
+    Return a strictly valid JSON object with these keys:
+    - "risk_score": (Integer 0-100)
+    - "risk_level": (String "LOW", "MEDIUM", or "CRITICAL")
+    - "reason": (String, a concise technical explanation of the findings)
     """
 
-    # 4. AI Analysis
+    # 4. Call Llama 3
     try:
         response = ollama.chat(
             model="llama3",
             messages=[
                 {'role': 'system', 'content': system_prompt},
-                {'role': 'user', 'content': f"Audit this proposal for {coin_name.upper()}: {json.dumps(target_data)}"}
+                {'role': 'user', 'content': f"Audit this proposal: {json.dumps(target_data)}"}
             ],
             format='json'
         )
@@ -72,3 +54,18 @@ def audit_governance(coin_name: str):
         
     except Exception as e:
         return {"risk_score": 0, "risk_level": "ERROR", "reason": str(e)}
+
+# --- TESTING BLOCK ---
+if __name__ == "__main__":
+    print("⚖️  GOV AGENT DIAGNOSTIC TEST")
+    print("----------------------------")
+    
+    # Test 1: Run the Danger Scenario (Expect CRITICAL / Flash Loan)
+    print("\n[TEST 1] Auditing 'danger_scenario' (Expect CRITICAL)...")
+    result_danger = audit("danger_scenario")
+    print(json.dumps(result_danger, indent=2))
+    
+    # Test 2: Run the Safe Scenario (Expect LOW / Timelock)
+    print("\n[TEST 2] Auditing 'safe_scenario' (Expect LOW)...")
+    result_safe = audit("safe_scenario")
+    print(json.dumps(result_safe, indent=2))
