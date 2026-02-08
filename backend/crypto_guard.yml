@@ -1,0 +1,13 @@
+name: crypto_guard
+channels:
+ - conda-forge
+ - defaults
+ - pip
+dependencies:
+ - python=3.11
+ - colorama
+ - fastapi
+ - uvicorn
+ - requests
+ - pip:
+    - ollama
