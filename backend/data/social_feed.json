@@ -1,0 +1,18 @@
+{
+  "safe_scenario": {
+    "project_name": "GoodDefi Protocol",
+    "tweets": [
+      {"user": "@DeFi_Chad", "text": "Just read the whitepaper. The tokenomics look sustainable.", "timestamp": "2025-10-24T12:05:00Z", "account_age_days": 450},
+      {"user": "@Sarah_Builds", "text": "Excited for the launch! The team is fully doxxed.", "timestamp": "2025-10-24T14:20:15Z", "account_age_days": 890},
+      {"user": "@Crypto_Analyst", "text": "Liquidity is locked for 2 years. Good sign.", "timestamp": "2025-10-24T16:00:00Z", "account_age_days": 1200}
+    ]
+  },
+  "danger_scenario": {
+    "project_name": "SleepMint Token",
+    "tweets": [
+      {"user": "@CryptoBot_01", "text": "This is the next 1000x gem! LFG 🚀", "timestamp": "2025-10-24T10:00:01Z", "account_age_days": 1},
+      {"user": "@CryptoBot_02", "text": "This is the next 1000x gem! LFG 🚀", "timestamp": "2025-10-24T10:00:01Z", "account_age_days": 1},
+      {"user": "@CryptoBot_03", "text": "This is the next 1000x gem! LFG 🚀", "timestamp": "2025-10-24T10:00:02Z", "account_age_days": 0}
+    ]
+  }
+}
