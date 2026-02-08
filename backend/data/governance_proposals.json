@@ -1,20 +1,16 @@
 {
-  "safe_scenario": {
-    "proposal_id": "BIP-88",
-    "title": "Upgrade Lending Pool V2",
-    "proposer": "0xCoreTeam_Multisig",
-    "voting_period": "7 days",
+  "aave": {
+    "proposal_title": "Risk Parameter Update",
+    "proposer": "0xTrustedDelegate_Aave",
     "execution_delay": "48 hours",
-    "proposer_history": "Active voter for 3 years",
-    "funding_source": "Treasury Allocation"
+    "funding_source": "Treasury Multi-Sig",
+    "voting_period": "5 days"
   },
-  "danger_scenario": {
-    "proposal_id": "BIP-99",
-    "title": "Emergency Admin Fix",
-    "proposer": "0xAttacker_Wallet",
-    "voting_period": "1 block (12 seconds)",
-    "execution_delay": "0 seconds (Instant)",
-    "proposer_history": "Account created 5 minutes ago",
-    "funding_source": "Aave Flash Loan (100,000 ETH borrowed)"
+  "beanstalk": {
+    "proposal_title": "Emergency Fund Allocation",
+    "proposer": "0xAnonDev_FlashBot",
+    "execution_delay": "0 seconds",
+    "funding_source": "Flash Loan (Balancer)",
+    "voting_period": "30 minutes"
   }
 }

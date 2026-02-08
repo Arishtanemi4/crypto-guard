@@ -1,14 +1,20 @@
 {
-  "safe_scenario": {
-    "contract_address": "0xGoodContract_777",
+  "btc": {
+    "contract_address": "0xxyxyxyxContract_777",
     "funding_history": [
       {"from": "0xCoinbaseExchange", "to": "0xNiceDev_Beta", "amount": "5.0", "token": "ETH"}
     ]
   },
-  "danger_scenario": {
-    "contract_address": "0xBadContract_888",
+  "eth": {
+    "contract_address": "0xxyxyxyxyxContract_888",
     "funding_history": [
       {"from": "0xTornadoCashRouter", "to": "0xDevWallet_Alpha", "amount": "100.0", "token": "ETH"}
+    ]
+  },
+  "sol": {
+    "contract_address": "0xFreshWallet_999",
+    "funding_history": [
+      {"from": "0xFixedFloat", "to": "0xSolDev_Gamma", "amount": "500.0", "token": "SOL"}
     ]
   }
 }
