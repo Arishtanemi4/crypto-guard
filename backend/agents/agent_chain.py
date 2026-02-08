@@ -1,67 +1,68 @@
 import json
+import os
 import ollama
 
-def trace(scenario_type="danger_scenario"):
-    """
-    Analyzes blockchain wallet history for Money Laundering risks.
-    """
-    
-    # 1. Load the data
-    try:
-        with open("data/chain_history.json", 'r') as f:
-            full_data = json.load(f)
-    except FileNotFoundError:
-        return {"risk_score": 0, "risk_level": "ERROR", "reason": "data/chain_history.json file not found."}
-    
-    # 2. Select the specific scenario
-    if scenario_type not in full_data:
-        return {"risk_score": 0, "risk_level": "ERROR", "reason": f"Scenario '{scenario_type}' not found."}
-        
-    target_data = full_data[scenario_type]
+# --- CONFIGURATION ---
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "chain_history.json")
 
-    # 3. The Forensic System Prompt
+# --- CORE LOGIC ---
+def analyze_wallet(coin_name: str):
+    """
+    Analyzes the specific coin's funding history from the JSON store.
+    """
+    # 1. Load Data
+    if not os.path.exists(DATA_PATH):
+        return {"risk_score": 0, "risk_level": "ERROR", "reason": "Database file not found."}
+
+    try:
+        with open(DATA_PATH, 'r') as f:
+            full_data = json.load(f)
+    except Exception as e:
+        return {"risk_score": 0, "risk_level": "ERROR", "reason": f"Corrupt DB: {str(e)}"}
+    
+    # 2. Lookup Coin
+    target_coin = coin_name.lower()
+    
+    if target_coin not in full_data:
+        return {
+            "risk_score": 0, 
+            "risk_level": "UNKNOWN", 
+            "reason": f"Coin '{coin_name}' not found in chain history."
+        }
+        
+    target_data = full_data[target_coin]
+
+    # 3. System Prompt
     system_prompt = """
     You are a Senior Blockchain Forensic Investigator. 
-    Your task is to analyze the funding history of a smart contract deployer wallet to detect illicit funds.
+    Your task is to analyze the funding history of a wallet to detect Money Laundering (AML) risks.
     
-    RISK MATRIX (Follow strictly):
-    - CRITICAL RISK: Funding source contains "Tornado", "Mixer", "Blender", or known exploiters.
-    - MEDIUM RISK: Funding from High-Risk Exchanges (e.g., FixedFloat) or fresh wallets with no history.
-    - LOW RISK: Funding from KYC-compliant CEXs (e.g., Coinbase, Binance, Kraken).
+    RISK MATRIX:
+    - CRITICAL (Score 80-100): Funding from "Tornado", "Mixer", "Blender", or known hackers.
+    - MEDIUM (Score 40-79): Funding from High-Risk Exchanges (FixedFloat, Sideshift) or fresh wallets.
+    - LOW (Score 0-39): Funding from KYC-compliant CEXs (Coinbase, Binance, Kraken).
     
     OUTPUT FORMAT:
-    Return a strictly valid JSON object with these keys:
-    - "risk_score": (Integer 0-100)
-    - "risk_level": (String "LOW", "MEDIUM", or "CRITICAL")
-    - "reason": (String, a concise technical explanation of the findings)
+    Return a strictly valid JSON object:
+    {
+        "risk_score": (int),
+        "risk_level": (str: "LOW", "MEDIUM", "CRITICAL"),
+        "reason": (str: concise explanation)
+    }
     """
 
-    # 4. Call Llama 3
+    # 4. AI Analysis
     try:
         response = ollama.chat(
             model="llama3",
             messages=[
                 {'role': 'system', 'content': system_prompt},
-                {'role': 'user', 'content': f"Analyze this wallet trace: {json.dumps(target_data)}"}
+                {'role': 'user', 'content': f"Analyze this trace for {coin_name.upper()}: {json.dumps(target_data)}"}
             ],
-            format='json' # Forces strictly valid JSON response
+            format='json'
         )
         return json.loads(response['message']['content'])
         
     except Exception as e:
         return {"risk_score": 0, "risk_level": "ERROR", "reason": str(e)}
-
-# --- TESTING BLOCK (Run this file directly to test) ---
-if __name__ == "__main__":
-    print("🔗 CHAIN AGENT DIAGNOSTIC TEST")
-    print("------------------------------")
-    
-    # Test 1: Run the Danger Scenario (Expect CRITICAL / Tornado Cash)
-    print("\n[TEST 1] Tracing 'danger_scenario' (Expect CRITICAL)...")
-    result_danger = trace("danger_scenario")
-    print(json.dumps(result_danger, indent=2))
-    
-    # Test 2: Run the Safe Scenario (Expect LOW / Coinbase)
-    print("\n[TEST 2] Tracing 'safe_scenario' (Expect LOW)...")
-    result_safe = trace("safe_scenario")
-    print(json.dumps(result_safe, indent=2))
