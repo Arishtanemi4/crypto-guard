@@ -1,16 +1,65 @@
 {
+  "btc": {
+    "proposal_title": "BIP-300 Sidechain Upgrade",
+    "proposer": "0xCoreDev_Luke",
+    "execution_delay": "14 days",
+    "funding_source": "Community Grant",
+    "voting_period": "30 days"
+  },
+  "eth": {
+    "proposal_title": "EIP-4844 Proto-Danksharding",
+    "proposer": "0xEthereumFoundation",
+    "execution_delay": "7 days",
+    "funding_source": "Foundation Treasury",
+    "voting_period": "14 days"
+  },
   "aave": {
-    "proposal_title": "Risk Parameter Update",
-    "proposer": "0xTrustedDelegate_Aave",
+    "proposal_title": "Risk Parameter Update (USDC)",
+    "proposer": "0xGauntlet_Network",
     "execution_delay": "48 hours",
-    "funding_source": "Treasury Multi-Sig",
+    "funding_source": "DAO Treasury",
     "voting_period": "5 days"
   },
-  "beanstalk": {
-    "proposal_title": "Emergency Fund Allocation",
-    "proposer": "0xAnonDev_FlashBot",
+  "sol": {
+    "proposal_title": "Ecosystem Grant Program",
+    "proposer": "0xSolanaLabs",
+    "execution_delay": "24 hours",
+    "funding_source": "Foundation Wallet",
+    "voting_period": "3 days"
+  },
+  "arb": {
+    "proposal_title": "Incentive Program V2",
+    "proposer": "0xArb_Delegate",
+    "execution_delay": "12 hours",
+    "funding_source": "DAO Treasury",
+    "voting_period": "3 days"
+  },
+  "doge": {
+    "proposal_title": "Charity Wallet Allocation",
+    "proposer": "0xDoge_Foundation",
+    "execution_delay": "6 hours",
+    "funding_source": "Donation Fund",
+    "voting_period": "2 days"
+  },
+  "pepe": {
+    "proposal_title": "UNPAUSE TRADING & MINT",
+    "proposer": "0xAnon_Admin",
+    "execution_delay": "0 seconds",
+    "funding_source": "Dev Wallet",
+    "voting_period": "1 hour"
+  },
+  "bean": {
+    "proposal_title": "Emergency BIP-18 (Exploit)",
+    "proposer": "0xFlashLoan_Attacker",
     "execution_delay": "0 seconds",
     "funding_source": "Flash Loan (Balancer)",
-    "voting_period": "30 minutes"
+    "voting_period": "10 minutes"
+  },
+  "scam_token": {
+    "proposal_title": "Migrate Liquidity to V2",
+    "proposer": "0xDeployer_Admin",
+    "execution_delay": "0 seconds",
+    "funding_source": "Liquidity Pool",
+    "voting_period": "Instant"
   }
 }

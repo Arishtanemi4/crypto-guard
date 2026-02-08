@@ -1,17 +1,74 @@
 {
-  "solana": {
+  "btc": {
     "platform": "Twitter",
     "tweets": [
-      {"user": "@organic_user_1", "text": "Solana looking strong today!", "timestamp": "10:00:01"},
-      {"user": "@defi_fan_99", "text": "Just bridged some assets to SOL.", "timestamp": "10:05:30"}
+      {"user": "@satoshi_fan", "text": "Bitcoin breaking resistance at 60k looks healthy.", "timestamp": "10:00:01"},
+      {"user": "@macro_guy", "text": "Inflation data suggests a move to hard assets like BTC.", "timestamp": "10:15:30"},
+      {"user": "@tech_dev", "text": "New taproot update adoption is increasing.", "timestamp": "11:05:12"}
+    ]
+  },
+  "eth": {
+    "platform": "Farcaster",
+    "tweets": [
+      {"user": "@defi_dad", "text": "Gas fees are low today, good time to bridge.", "timestamp": "09:30:00"},
+      {"user": "@vitalik_fan", "text": "The roadmap for ETH 2.0 is looking solid.", "timestamp": "09:45:22"},
+      {"user": "@nft_artist", "text": "Just minted my collection on mainnet.", "timestamp": "12:10:05"}
+    ]
+  },
+  "aave": {
+    "platform": "Twitter",
+    "tweets": [
+      {"user": "@governance_bot", "text": "New proposal is live for voting on Aave.", "timestamp": "14:00:00"},
+      {"user": "@risk_analyst", "text": "Aave keeps proving its resilience in bear markets.", "timestamp": "14:20:10"},
+      {"user": "@lending_pro", "text": "Supplying USDC on Aave for 5% APY.", "timestamp": "15:00:01"}
+    ]
+  },
+  "sol": {
+    "platform": "Twitter",
+    "tweets": [
+      {"user": "@sol_maxi", "text": "Solana speed is unmatched. LFG!", "timestamp": "16:00:00"},
+      {"user": "@nft_flipper", "text": "Just bought a MadLad, floor is sweeping.", "timestamp": "16:05:00"},
+      {"user": "@trader_jo", "text": "Sol breaking out against ETH pair.", "timestamp": "16:10:00"}
+    ]
+  },
+  "arb": {
+    "platform": "Reddit",
+    "tweets": [
+      {"user": "u/layer2_fan", "text": "Arbitrum simply has the best dApps right now.", "timestamp": "08:00:00"},
+      {"user": "u/airdrop_hunter", "text": "Any news on the STIP grants?", "timestamp": "08:45:00"},
+      {"user": "u/eth_maxi", "text": "L2s are the future of scaling.", "timestamp": "09:12:00"}
+    ]
+  },
+  "doge": {
+    "platform": "Twitter",
+    "tweets": [
+      {"user": "@elon_fan", "text": "Doge to the moon! 🚀", "timestamp": "20:00:00"},
+      {"user": "@shibe_inu", "text": "Much wow, such profit.", "timestamp": "20:05:00"},
+      {"user": "@crypto_bro", "text": "Buying the dip on Doge.", "timestamp": "20:10:00"}
     ]
   },
   "pepe": {
     "platform": "Twitter",
     "tweets": [
-      {"user": "@bot_77382", "text": "BUY PEPE NOW!!! MOON SOON!!!", "timestamp": "12:00:00"},
-      {"user": "@bot_99281", "text": "BUY PEPE NOW!!! MOON SOON!!!", "timestamp": "12:00:00"},
-      {"user": "@bot_11234", "text": "BUY PEPE NOW!!! MOON SOON!!!", "timestamp": "12:00:00"}
+      {"user": "@bot_111", "text": "BUY PEPE NOW!!! 1000X SOON!!!", "timestamp": "12:00:00"},
+      {"user": "@bot_222", "text": "BUY PEPE NOW!!! 1000X SOON!!!", "timestamp": "12:00:00"},
+      {"user": "@bot_333", "text": "BUY PEPE NOW!!! 1000X SOON!!!", "timestamp": "12:00:00"}
+    ]
+  },
+  "bean": {
+    "platform": "Discord",
+    "tweets": [
+      {"user": "Mod_Admin", "text": "ATTENTION: Do not interact with the contract.", "timestamp": "22:00:00"},
+      {"user": "User_Panic", "text": "Is my money safe??", "timestamp": "22:00:05"},
+      {"user": "Attacker_Bot", "text": "System exploit initialized.", "timestamp": "22:00:10"}
+    ]
+  },
+  "scam_token": {
+    "platform": "Telegram",
+    "tweets": [
+      {"user": "@fake_support", "text": "Click here to claim your airdrop now: bad-link.com", "timestamp": "01:00:00"},
+      {"user": "@fake_support_2", "text": "Click here to claim your airdrop now: bad-link.com", "timestamp": "01:00:00"},
+      {"user": "@fake_support_3", "text": "Last chance to claim! 10 mins left!", "timestamp": "01:00:00"}
     ]
   }
 }

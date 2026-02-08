@@ -1,20 +1,60 @@
 {
   "btc": {
-    "contract_address": "0xxyxyxyxContract_777",
+    "contract_address": "0xWrappedBTC_Address",
     "funding_history": [
-      {"from": "0xCoinbaseExchange", "to": "0xNiceDev_Beta", "amount": "5.0", "token": "ETH"}
+      {"from": "0xCoinbaseExchange", "to": "0xWhaleWallet_1", "amount": "50.0", "token": "WBTC"},
+      {"from": "0xBinanceColdWallet", "to": "0xWhaleWallet_1", "amount": "12.0", "token": "WBTC"}
     ]
   },
   "eth": {
-    "contract_address": "0xxyxyxyxyxContract_888",
+    "contract_address": "0xEthereumFoundation",
     "funding_history": [
-      {"from": "0xTornadoCashRouter", "to": "0xDevWallet_Alpha", "amount": "100.0", "token": "ETH"}
+      {"from": "0xGenesisBlock", "to": "0xDevWallet_Vitalik", "amount": "1000.0", "token": "ETH"}
+    ]
+  },
+  "aave": {
+    "contract_address": "0xAaveGovernanceV2",
+    "funding_history": [
+      {"from": "0xKrakenExchange", "to": "0xAaveTreasury", "amount": "5000.0", "token": "AAVE"}
     ]
   },
   "sol": {
-    "contract_address": "0xFreshWallet_999",
+    "contract_address": "0xSolanaBridge_Wormhole",
     "funding_history": [
-      {"from": "0xFixedFloat", "to": "0xSolDev_Gamma", "amount": "500.0", "token": "SOL"}
+      {"from": "0xFixedFloat", "to": "0xSolDegen_1", "amount": "200.0", "token": "SOL"},
+      {"from": "0xUnknownExchange", "to": "0xSolDegen_1", "amount": "50.0", "token": "SOL"}
+    ]
+  },
+  "arb": {
+    "contract_address": "0xArbitrumSequencer",
+    "funding_history": [
+      {"from": "0xHopProtocol", "to": "0xArbUser_Alpha", "amount": "1500.0", "token": "ARB"}
+    ]
+  },
+  "doge": {
+    "contract_address": "0xDogeChainBridge",
+    "funding_history": [
+      {"from": "0xChangeNow_Swap", "to": "0xMemeTrader_X", "amount": "100000.0", "token": "DOGE"}
+    ]
+  },
+  "pepe": {
+    "contract_address": "0xPepeContract_V3",
+    "funding_history": [
+      {"from": "0xTornadoCashRouter", "to": "0xAnonDev_1", "amount": "100.0", "token": "ETH"},
+      {"from": "0xTornadoCashRouter", "to": "0xAnonDev_2", "amount": "50.0", "token": "ETH"}
+    ]
+  },
+  "bean": {
+    "contract_address": "0xBeanstalk_Exploiter",
+    "funding_history": [
+      {"from": "0xAaveFlashLoan", "to": "0xAttackerWallet", "amount": "10000000.0", "token": "DAI"}
+    ]
+  },
+  "scam_token": {
+    "contract_address": "0xHoneypot_Scam",
+    "funding_history": [
+      {"from": "0xDisperse_App", "to": "0xScammer_Main", "amount": "0.1", "token": "ETH"},
+      {"from": "0xMixer_Wasabi", "to": "0xScammer_Main", "amount": "2.0", "token": "ETH"}
     ]
   }
 }
