@@ -46,7 +46,7 @@ export default function Terminal({ coinName }) {
   return (
     <div className="terminal-window">
       <div className="terminal-header">
-        <TerminalIcon size={16} /> CERBERUS_CLI_V3.0.exe
+        <TerminalIcon size={16} /> CRYPTO-GUARD_CLI_V3.0.exe
       </div>
       <div className="terminal-body">
         {logs.map((log, index) => (

@@ -1,38 +1,102 @@
 import { useState } from 'react';
 import { Hexagon, Activity, Search } from 'lucide-react';
-import { fetchAnalysis } from './services/api'; // Import your new API service
-import Dashboard from './components/Dashboard'; // Import the new Dashboard component
-import Terminal from './components/Terminal';   // (Optional: Keep your Terminal component in a separate file)
+import { fetchAnalysis } from './services/api'; 
+import Dashboard from './components/Dashboard'; 
+import Terminal from './components/Terminal'; 
+import LandingPage from './components/LandingPage'; // Ensure this is imported
 
 // --- CONFIGURATION ---
 const COIN_DB = {
   BTC: {
     name: "Bitcoin",
     symbol: "BTC",
-    apiCode: "btc", // <--- THIS IS WHAT GETS PASSED TO PYTHON
+    apiCode: "btc",
     price: "$98,420",
-    img: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
+    img: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029",
+    contract_address: "0xWrappedBTC_Address",
+    funding_history: [
+      { from: "0xCoinbaseExchange", to: "0xWhaleWallet_1", amount: "50.0", token: "WBTC" },
+      { from: "0xBinanceColdWallet", to: "0xWhaleWallet_1", amount: "12.0", token: "WBTC" }
+    ]
   },
   ETH: {
     name: "Ethereum",
     symbol: "ETH",
     apiCode: "eth",
     price: "$4,200",
-    img: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+    img: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029",
+    contract_address: "0xEthereumFoundation",
+    funding_history: [
+      { from: "0xGenesisBlock", to: "0xDevWallet_Vitalik", amount: "1000.0", token: "ETH" }
+    ]
   },
   SOL: {
     name: "Solana",
     symbol: "SOL",
     apiCode: "sol",
     price: "$145",
-    img: "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
+    img: "https://cryptologos.cc/logos/solana-sol-logo.png?v=029",
+    contract_address: "0xSolanaBridge_Wormhole",
+    funding_history: [
+      { from: "0xFixedFloat", to: "0xSolDegen_1", amount: "200.0", token: "SOL" },
+      { from: "0xUnknownExchange", to: "0xSolDegen_1", amount: "50.0", token: "SOL" }
+    ]
+  },
+  AAVE: {
+    name: "Aave",
+    symbol: "AAVE",
+    apiCode: "aave",
+    price: "$85.50",
+    img: "https://cryptologos.cc/logos/aave-aave-logo.png?v=029",
+    contract_address: "0xAaveGovernanceV2",
+    funding_history: [
+      { from: "0xKrakenExchange", to: "0xAaveTreasury", amount: "5000.0", token: "AAVE" }
+    ]
+  },
+  ARB: {
+    name: "Arbitrum",
+    symbol: "ARB",
+    apiCode: "arb",
+    price: "$1.12",
+    img: "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029",
+    contract_address: "0xArbitrumSequencer",
+    funding_history: [
+      { from: "0xHopProtocol", to: "0xArbUser_Alpha", amount: "1500.0", token: "ARB" }
+    ]
+  },
+  DOGE: {
+    name: "Dogecoin",
+    symbol: "DOGE",
+    apiCode: "doge",
+    price: "$0.12",
+    img: "https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029",
+    contract_address: "0xDogeChainBridge",
+    funding_history: [
+      { from: "0xChangeNow_Swap", to: "0xMemeTrader_X", amount: "100000.0", token: "DOGE" }
+    ]
+  },
+  PEPE: {
+    name: "Pepe",
+    symbol: "PEPE",
+    apiCode: "pepe",
+    price: "$0.000008",
+    img: "https://cryptologos.cc/logos/pepe-pepe-logo.png?v=029",
+    contract_address: "0xPepeContract_V3",
+    funding_history: [
+      { from: "0xTornadoCashRouter", to: "0xAnonDev_1", amount: "100.0", token: "ETH" },
+      { from: "0xTornadoCashRouter", to: "0xAnonDev_2", amount: "50.0", token: "ETH" }
+    ]
   },
   BEAN: {
     name: "Bean Cash",
     symbol: "BEAN",
     apiCode: "bean",
     price: "$0.001",
-    img: "https://cryptologos.cc/logos/terra-luna-luna-logo.png?v=029" // Placeholder image
+    img: "https://cryptologos.cc/logos/terra-luna-luna-logo.png?v=029", // Used generic icon for safety
+    contract_address: "0xBeanstalk_Exploiter",
+    funding_history: [
+      { from: "0xAaveFlashLoan", to: "0xAttackerWallet", amount: "10000000.0", token: "DAI" }
+    ]
   }
 };
 
@@ -53,6 +117,7 @@ function App() {
       const data = await fetchAnalysis(coin.apiCode);
       setScanResult(data);
     } catch (err) {
+      console.error(err);
       setError("FAILED TO CONNECT TO COUNCIL. BACKEND OFFLINE?");
     } finally {
       setScanning(false);
@@ -69,45 +134,23 @@ function App() {
     <div className="container">
       <div className="header">
         <h1 className="logo">
-          <Hexagon size={40} color="#00ff9d" /> CERBERUS
+          <Hexagon size={40} color="#00ff9d" /> CRYPTO GUARD
         </h1>
-        <p className="subtitle">Algorithmic Asset Integrity System</p>
+        <p className="subtitle">AI-Powered Blockchain Defense </p>
       </div>
 
       {/* VIEW 1: LANDING PAGE */}
       {!selectedCoin && (
-        <div className="fade-in">
-          <div className="search-bar">
-            <Search size={20} color="#666" />
-            <input type="text" placeholder="Search Asset (e.g. BTC, ETH)..." disabled />
-          </div>
-
-          <h3 className="section-title">AVAILABLE TARGETS</h3>
-          <div className="coin-grid">
-            {Object.keys(COIN_DB).map((key) => {
-              const coin = COIN_DB[key];
-              return (
-                <div key={key} className="card coin-card" onClick={() => handleSelectCoin(key)}>
-                  <div className="coin-header">
-                    <img src={coin.img} alt={coin.name} className="coin-logo" />
-                    <span className="coin-symbol">{coin.symbol}</span>
-                  </div>
-                  <div className="coin-name">{coin.name}</div>
-                  <div className="coin-price">{coin.price}</div>
-                  <div className="scan-btn">INITIATE SCAN</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <LandingPage 
+          coins={COIN_DB} 
+          onSelect={handleSelectCoin} 
+        />
       )}
 
-      {/* VIEW 2: LOADING (You can reuse your Terminal component here) */}
+      {/* VIEW 2: LOADING */}
       {selectedCoin && scanning && (
-        <div className="loading-container fade-in">
-           <Activity className="spin" size={80} color="#00ff9d" />
-           <h2>SCANNING {selectedCoin.name.toUpperCase()}...</h2>
-           <p>Connecting to Neural Council...</p>
+        <div className="fade-in" style={{ maxWidth: '600px', margin: '0 auto' }}>
+           <Terminal coinName={selectedCoin.name} />
         </div>
       )}
 

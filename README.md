@@ -1,9 +1,26 @@
-# A Multi Agent framework to track real vs fake hype of Cryptocurrencies
+# Crypto Guard
 
-## Backend
+## A Multi Agent framework to track real vs fake hype of Cryptocurrencies
 
+### Backend
 
-## Frontend
+go to the backend folder using
+
+```cd backend```
+
+create a conda environment using
+
+```conda create -f crypto_guard.yml```
+
+or python environment using venv.
+
+alternatively you can use pip installations.
+
+```pip install -r requirements.txt```
+
+run the `app.py` file in `backend` dir
+
+### Frontend
 
 Steps to execute and recreate the frontend.
 

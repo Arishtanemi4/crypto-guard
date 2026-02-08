@@ -54,6 +54,30 @@ export default function Dashboard({ data, coin, onBack }) {
           </p>
         </div>
 
+        {/* AGENT CARD 1: CHAIN */}
+        <AgentCard 
+          title="Chain Score" 
+          icon={<Lock />} 
+          score={data.breakdown.chain_agent.score} 
+          reason={data.breakdown.chain_agent.reason} 
+        />
+
+        {/* AGENT CARD 2: GOV */}
+        <AgentCard 
+          title="Govarnance Score" 
+          icon={<Vote />} 
+          score={data.breakdown.gov_agent.score} 
+          reason={data.breakdown.gov_agent.reason} 
+        />
+
+        {/* AGENT CARD 3: SOCIAL */}
+        <AgentCard 
+          title="Social Score" 
+          icon={<Users />} 
+          score={data.breakdown.social_agent.score} 
+          reason={data.breakdown.social_agent.reason} 
+        />
+
         {/* RADAR CHART */}
         <div className="card" style={{ height: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <h3 style={{ marginBottom: 0 }}>RISK TOPOLOGY</h3>
@@ -66,30 +90,6 @@ export default function Dashboard({ data, coin, onBack }) {
             </RadarChart>
           </ResponsiveContainer>
         </div>
-
-        {/* AGENT CARD 1: CHAIN */}
-        <AgentCard 
-          title="Chain Forensic" 
-          icon={<Lock />} 
-          score={data.breakdown.chain_agent.score} 
-          reason={data.breakdown.chain_agent.reason} 
-        />
-
-        {/* AGENT CARD 2: GOV */}
-        <AgentCard 
-          title="Gov Audit" 
-          icon={<Vote />} 
-          score={data.breakdown.gov_agent.score} 
-          reason={data.breakdown.gov_agent.reason} 
-        />
-
-        {/* AGENT CARD 3: SOCIAL */}
-        <AgentCard 
-          title="Social Intel" 
-          icon={<Users />} 
-          score={data.breakdown.social_agent.score} 
-          reason={data.breakdown.social_agent.reason} 
-        />
 
       </div>
     </div>
