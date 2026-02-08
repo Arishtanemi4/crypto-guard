@@ -2,7 +2,7 @@
   "btc": {
     "contract_address": "0xWrappedBTC_Address",
     "funding_history": [
-      {"from": "0xCoinbaseExchange", "to": "0xWhaleWallet_1", "amount": "50.0", "token": "WBTC"},
+      {"from": "0xBrave", "to": "0xWhaleWallet_1", "amount": "50.0", "token": "WBTC"},
       {"from": "0xBinanceColdWallet", "to": "0xWhaleWallet_1", "amount": "12.0", "token": "WBTC"}
     ]
   },
