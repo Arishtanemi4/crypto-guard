@@ -1,35 +1,24 @@
-# Crypto Guard
+Crypto Guard
 
-## A Multi Agent framework to track real vs fake hype of Cryptocurrencies
+A Multi-Agent Framework for On-Chain Asset Verification and Risk Assessment.
 
-### Backend
+Overview
+Crypto Guard is an automated risk-assessment engine designed to evaluate the contextual security of digital assets. While traditional security tools primarily focus on static smart contract audits, they often fail to detect off-chain and contextual fraud vectors, such as illicit funding sources, coordinated social manipulation, and malicious governance structures.
 
-go to the backend folder using
+This project introduces a multi-agent architecture that evaluates the holistic risk of a cryptocurrency by analyzing the deployer's history, social sentiment integrity, and governance parameters. 
 
-```cd backend```
+Core Architecture
+The framework operates via three specialized analytical modules:
+- Chain Analysis Agent: Performs recursive backward tracing on deployer wallets to identify the provenance of deployment funds, flagging interactions with high-risk entities or privacy mixers.
+- Social Intelligence Agent: Conducts temporal and sentiment analysis across social networks to identify sybil activity and coordinated inauthentic behavior (CIB) surrounding an asset's community.
+- Governance Sentinel Agent: Audits governance contract parameters, specifically analyzing execution delays and time-locks to identify potential flash-loan vulnerability vectors.
 
-create a conda environment using
 
-```conda create -f crypto_guard.yml```
+Installation and Setup
 
-or python environment using venv.
+Follow the instructions below to set up the backend and frontend environments locally.
 
-alternatively you can use pip installations.
-
-```pip install -r requirements.txt```
-
-run the `app.py` file in `backend` dir
-
-### Frontend
-
-Steps to execute and recreate the frontend.
-
-Go into the frontend directory
-`cd frontend`
-
-Run the installation command
-```npm install```
-This will install the dependencies based on `package.json`
-and create the `node_modules` folder
-
-```npm run dev```
+Backend Setup
+Navigate to the backend directory:
+```bash
+cd backend
